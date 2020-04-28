@@ -18,7 +18,7 @@ If anything isn't clear please open an issue explaining the problem and I will t
 
 ## Downloading Skyimager & Raspbian
 
-You can download skyimager (from here)[https://github.com/SkycoinProject/skybian/releases]. Click on "assets" and download the "skyimager.tar.xz" file for your operating system. The "darwin-amd64" file is the one for macOS. Extract it using your default archive extracting program for your distrubution. (Note: extracting will be more complicated for Windows, and you will have to use 7zip. However, how to do this is not covered here).
+You can download skyimager [from here](https://github.com/SkycoinProject/skybian/releases). Click on "assets" and download the "skyimager.tar.xz" file for your operating system. The "darwin-amd64" file is the one for macOS. Extract it using your default archive extracting program for your distrubution. (Note: extracting will be more complicated for Windows, and you will have to use 7zip. However, how to do this is not covered here).
 
 Download raspbian [from here](https://downloads.raspberrypi.org/raspbian_lite_latest). Extract the zip file to find raspbian, which will be a ".img" file.
 ## Setting up skywire images
