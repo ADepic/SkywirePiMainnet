@@ -7,10 +7,10 @@ The main difference between using a GNU/linux or mac computer and a Windows one 
 If anything isn't clear please open an issue explaining the problem and I will try to make this documentation clearer.
 
 # Requirements
-* a computer (this guide is aimed towards linux ones)
-* a way that the computer can read and write to SD cards
-  + this may be a SD card reader on your computer
-  + you can instead buy USB sticks that read SD cards. They can then found for relatively cheap, for example (this one)[https://www.amazon.co.uk/Integral-USB-Micro-Card-Reader/dp/B07PM829TM/ref=sr_1_4?dchild=1&keywords=SD%2BCard%2BReader&qid=1588069124&sr=8-4&th=1]
+* A computer (this guide is aimed towards linux ones)
+* A way that the computer can read and write to SD cards
+  + This may be a SD card reader on your computer
+  + You can instead buy USB sticks that read SD cards. They can then found for relatively cheap, for example (this one)[https://www.amazon.co.uk/Integral-USB-Micro-Card-Reader/dp/B07PM829TM/ref=sr_1_4?dchild=1&keywords=SD%2BCard%2BReader&qid=1588069124&sr=8-4&th=1]
 * A few raspberry PIs (preferably 8).
   + If you have only one PI then this guide is not suitable. Read the "number of visor images" section to see alternative options.
 
