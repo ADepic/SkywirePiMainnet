@@ -10,7 +10,7 @@ If anything isn't clear please open an issue explaining the problem and I will t
 * A computer (this guide is aimed towards linux ones)
 * A way that the computer can read and write to SD cards
   + This may be a SD card reader on your computer
-  + You can instead buy USB sticks that read SD cards. They can then found for relatively cheap, for example (this one)[https://www.amazon.co.uk/Integral-USB-Micro-Card-Reader/dp/B07PM829TM/ref=sr_1_4?dchild=1&keywords=SD%2BCard%2BReader&qid=1588069124&sr=8-4&th=1]
+  + You can instead buy USB sticks that read SD cards. They can then found for relatively cheap, for example [this one](https://www.amazon.co.uk/Integral-USB-Micro-Card-Reader/dp/B07PM829TM/ref=sr_1_4?dchild=1&keywords=SD%2BCard%2BReader&qid=1588069124&sr=8-4&th=1)
 * A few raspberry PIs (preferably 8).
   + If you have only one PI then this guide is not suitable. Read the "number of visor images" section to see alternative options.
 
@@ -39,7 +39,7 @@ In order to create these skywire supporting images, skyimager needs a **base ima
 
 ### Gateway address
 
-After this, you need to find your **Gateway address** . It is very important that this step is set up correclty, or you could waste time flashing the images onto your raspberry PIs only to realise that the gateway address you entered is incorrect and nothing works.
+After this, you need to find your **Gateway address** . It is very important that this step is set up correctly, or you could waste **hours** flashing the images onto your raspberry PIs only to realise that the gateway address you entered is incorrect and nothing works.
 
 To find your gateway address, open the terminal and enter this command (works on linux and also probably mac):
 ```
