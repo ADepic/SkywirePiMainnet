@@ -77,8 +77,136 @@ After filling in the screen, press next. You will be taken to a screen called "F
 
 After storing the information, or not, press build, and skyimager will create the images. They will be stored in a folder called "final" in the **Work Directory** that was defined earlier.
 
-### Flashing images.
+## Flashing images.
 
 In order to flash images you should download [BalenaEtcher](https://www.balena.io/etcher/).
 
-Incomplete guide. The rest will be finished later.
+Simply insert your SD card. Select one of the image files for the "image" (make sure it is a different image for each raspberry pi) and flash. Once you have flashed, you will want to enable SSH, which is detailed below.
+
+### Enabling SSH & Setting Up a Static IP Address
+
+Once the image is flashed, your SD card will show up as two different drives: **rootfs** and **boot**.
+
+In the **boot** drive, create an *empty file* called **ssh** (in the "root" directory, i.e. don't go into any folder of the drive, just stay in the main one). Make sure this file has *no extension*.
+
+#### Static IP
+
+Static IP is useful because it gives a local IP address to each one of your cards. This makes it easy to access via SSH (as we will need later).
+
+To set up a Static IP, go to the **rootfs** drive and go into a folder called **etc**. In this folder you should find a file called **dhcpcd.conf**.
+
+In the file paste these four lines:
+```
+interface eth0
+static ip_address= <STATIC IP ADDRESS>/24
+static routers= <GATEWAP IP ADRESS>
+static domain_name_servers= <GATEWAP IP ADDRESS>
+```
+Remember the gateway IP address that you wrote down earlier? Well, you will need it now. Replace <GATEWAY IP ADDRESS> with your gateway IP address after pasting the 4 lines shown above.
+  
+After this, you will need to replace <STATIC IP ADDRESS> with a static IP address of your choice. The format of static IP addresses are `192.168.x.xx` where x is a number of your choice. Each PI needs to have a **different static IP address**. It also needs to not be the same as any static IP address that currently exists on the network. If you don't know what static IP address to chose, I recommend you give addresses in the same way I have:
+  
+I gave the first PI the address `192.168.1.21`, the second PI `192.168.1.22`, third PI `192.168.1.23` and so on and so forth. This way I know my first PI ends with 1, and 4rth PI ends with four, and this becomes easy for reference. I also flashed the images in this order, so that `image 0` is flashed to the PI with `192.168.1.21`, `image 1` to the PI with `192.168.1.22`. Since `image 0` is the **hypervisor** image, I know that the PI with the lowest number for it's static IP is the hypervisor.
+
+You should write down your static IP address if you know you won't remember it. If you using a naming scheme similar to mine, then you can write that instead of writing down all 8 static IP addresses. Just make sure you have access to your static IP addresses, because you will need them later.
+
+Make sure you have the `/24` after the IP address, this is necessary.
+So my code would look like this:
+```
+interface eth0
+static ip_address= 192.168.1.21/24
+static routers= 192.168.1.254
+static domain_name_servers= 192.168.1.254
+```
+If your computer denies you permission from making changes to those files (it did this to me on linux, I don't know if it will do this on mac or windows), then you need to edit it in the terminal. To do this, simply copy the file (dhcpcd.conf)(can't do this on windows) in your file browser. The run this command (and paste your file where it says <FILE>) 
+```
+sudo nano <FILE>
+```
+However, if pasting the file led to it adding `file://` on the start, the remove the `file://` text. (On linux, make sure there is one forward-slash at the start, however).
+  
+This command will open a text editor in the terminal. You can paste the above 4 lines using `ctrl-shift-v` and edit them as normal (using `ctrl-shift-v` to paste).
+
+After the static IP is set up, safely remove the SD card and insert it into the the raspberry PI. Repeat all the steps in the "flashing" section for each one of your PIs.
+
+## Setting up raspberry pi
+
+After you have finished flashing all your PIs and turned them on, you will need to connect to each one and install skywire. 
+
+### Connecting to the PI and first steps
+
+To connect to your PI, enter the following command into your terminal:
+```
+ssh pi@<STATIC IP ADDRESS>
+```
+where <STATIC IP ADDRESS> is the static IP address of the PI you want to connect to. I would set up the PIs in the order you named them (e.g. set up `192.168.1.21` fisrt, then `192.168.1.22` next, etc), so that you do not forget which ones you set up and which ones you haven't. I would **set up the hypervisor first**, so if your naming scheme is different to mine in that the hypervisor does not have the lowest static IP address, then enter the address of your **hypervisor**. 
+  
+Once you enter the above command, it will ask you if you trust the device you are connecting to. Enter `yes`. After this, it will ask for a password. The default password for a raspberry PI is:
+```
+raspberry
+```
+So simply enter this password.
+
+As soon as you have logged in, run this command:
+```
+sudo raspi-config
+```
+And select the `Change Password` option. Change the password to something different, as `raspberry` is not a secure password.
+
+### Installing Skywire
+
+After changing the password, enter this command:
+```
+sudo -i
+```
+All the following commands listed below **will not work** unless you enter the above command.
+
+Next, enter this command to open a text editor:
+```
+nano /etc/apt/sources.list
+```
+And in the file, enter these two lines:
+```
+deb http://skyfleet.github.io/sky-update stretch main
+# deb-src http://skyfleet.github.io/sky-update stretch main
+```
+Press `ctrl-s` to save and then `ctrl-x` to exit the text editor.
+
+After that, simply copy and paste the following commands one by one and wait for each one to finish:
+
+```
+curl -L http://skyfleet.github.io/sky-update/KEY.asc | apt-key add -
+```
+
+NOTE: For the following commands, when a dialogue saying "Continue?" comes up, type `y` and press `enter` to confirm.
+```
+apt update
+```
+```
+apt install network-manager
+```
+```
+apt install skywire
+```
+### Running skywire
+
+Run skywire manually like this:
+```
+skywire-startup
+```
+If you are setting up a **hypervisor** (which is the first one you should be setting up as I recommended), in a web browser go to `<STATIC IP ADDRESS>:8000`. For example, in my case that would be `192.168.1.21:8000`. Click on `Configure initial launch` and choose a password for your hypervisor. After this, enter the password you just chose.
+
+If you are instead setting up a **visor**, then after running it, see if it shows up in the list of visors in your **hypervisorUI** (as shown above). 
+
+If any of that didn't work, then Look if any bugs showed up in the terminal. You can copy and paste that error message and submit it as an issue in this repository, or you can ask the skycoin telegram. **DO NOT POST THE ENTIRE OUTPUT IN YOUR TERMINAL, IS THIS CONTAINS YOUR SECRET KEYS**. Instead you want to paste the code after `--END SKYCONF LOGS--` to make sure no one sees your secret keys.
+
+If your set up worked, then press `Ctrl-c` or `Ctrl-z` to cancel the service, and enter the two lines below:
+```
+systemctl enable skywire-startup
+```
+```
+systemctl start skywire-startup
+```
+
+This will run it automatically without your intervention, and it will automatically start up skywire even if your reboot your raspberry PIs.
+
+Once you have set up skywire on one PI, repeat the steps for all the other PIs.
