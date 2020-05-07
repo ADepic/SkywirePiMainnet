@@ -1,4 +1,3 @@
-## Note: this guide is incomplete
 # Introduction
 This guide will show you how to get the **Skywire Mainnet** running on a set of raspberry PIs. Currently it is written from my experience of a GNU/linux computer, so all the instructions will be based on that. However, I may try this again with a Windows computer later and update the guide.
 
