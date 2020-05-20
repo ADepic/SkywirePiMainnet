@@ -186,11 +186,14 @@ apt install network-manager
 ```
 apt install skywire
 ```
+```
+apt install skybian-skywire
+```
 ### Running skywire
 
 Run skywire manually like this:
 ```
-skywire-startup
+skybian-firstrun
 ```
 If you are setting up a **hypervisor** (which is the first one you should be setting up as I recommended), in a web browser go to `<STATIC IP ADDRESS>:8000`. For example, in my case that would be `192.168.1.21:8000`. Click on `Configure initial launch` and choose a password for your hypervisor. After this, enter the password you just chose.
 
@@ -200,10 +203,10 @@ If any of that didn't work, then Look if any bugs showed up in the terminal. You
 
 If your set up worked, then press `Ctrl-c` or `Ctrl-z` to cancel the service, and enter the two lines below:
 ```
-systemctl enable skywire-startup
+systemctl enable skywire-firstrun
 ```
 ```
-systemctl start skywire-startup
+systemctl start skywire-firstrun
 ```
 
 This will run it automatically without your intervention, and it will automatically start up skywire even if your reboot your raspberry PIs.
