@@ -203,10 +203,10 @@ If any of that didn't work, then Look if any bugs showed up in the terminal. You
 
 If your set up worked, then press `Ctrl-c` or `Ctrl-z` to cancel the service, and enter the two lines below:
 ```
-systemctl enable skywire-firstrun
+systemctl enable skybian-firstrun
 ```
 ```
-systemctl start skywire-firstrun
+systemctl start skybian-firstrun
 ```
 
 This will run it automatically without your intervention, and it will automatically start up skywire even if your reboot your raspberry PIs.
