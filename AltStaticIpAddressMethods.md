@@ -33,4 +33,37 @@ After entered the four lines, press `ctrl-s` to save and `ctrl-x` to exit.
 
 ## Finding the assigned IP address
 
-[Youtube Video](https://youtube.com/watch?v=wvgeUmVXJlM)
+NOTE: I don't know how well this method scales when you have multiple raspberry PIs. It may not work with multiple raspberry PIs.
+
+Refer to this [Youtube Video](https://youtu.be/wvgeUmVXJlM?t=220) on how to find the IP address that has been assigned to your raspberry PI.
+
+After getting into your raspberry PI, set up your static IP address:
+Follow these commands:
+
+```
+sudo nano /etc/dhcpcd.conf
+```
+And write out the following lines:
+```
+interface eth0
+static ip_address= <STATIC IP ADDRESS>/24
+static routers= <GATEWAY IP ADRESS>
+static domain_name_servers= <GATEWAY IP ADDRESS>
+```
+
+The main guide describes what static IP address you should choose, and how to find your **Gateway IP address**.
+
+An example configuration would look like this:
+```
+interface eth0
+static ip_address= 192.168.1.21/24
+static routers= 192.168.1.254
+static domain_name_servers= 192.168.1.254
+```
+
+**PLEASE refer to the main guide to find out what your gateway IP address is and what Static IP addresses you should choose.**
+
+After entered the four lines, press `ctrl-s` to save and `ctrl-x` to exit.
+
+
+
