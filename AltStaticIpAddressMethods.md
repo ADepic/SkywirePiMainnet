@@ -33,4 +33,4 @@ After entered the four lines, press `ctrl-s` to save and `ctrl-x` to exit.
 
 ## Finding the assigned IP address
 
-[Youtube Video](https://youtube.c/watch?v=wvgeUmVXJlM)
+[Youtube Video](https://youtube.com/watch?v=wvgeUmVXJlM)
