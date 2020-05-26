@@ -101,7 +101,7 @@ In the file paste these four lines:
 interface eth0
 static ip_address= <STATIC IP ADDRESS>/24
 static routers= <GATEWAY IP ADRESS>
-static domain_name_servers= <GATEWAP IP ADDRESS>
+static domain_name_servers= <GATEWAY IP ADDRESS>
 ```
 Remember the gateway IP address that you wrote down earlier? Well, you will need it now. Replace <GATEWAY IP ADDRESS> with your gateway IP address after pasting the 4 lines shown above.
   
