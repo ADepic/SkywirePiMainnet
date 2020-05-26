@@ -84,11 +84,13 @@ Simply insert your SD card. Select one of the image files for the "image" (make 
 
 ### Enabling SSH & Setting Up a Static IP Address
 
-Once the image is flashed, your SD card will show up as two different drives: **rootfs** and **boot**.
+Once the image is flashed, your SD card will show up as a drive called **boot**. There might also be a drive called **rootfs**, also this does not always show up.
 
 In the **boot** drive, create an *empty file* called **ssh** (in the "root" directory, i.e. don't go into any folder of the drive, just stay in the main one). Make sure this file has *no extension*.
 
 #### Static IP
+
+**This section is only possible if a *rootfs* drive showed up when you flashed the SD card. If it didn't, you will need to find [an alterative way of accessing all your raspberry PIs](AltStaticIpAddressMethods.md)**
 
 Static IP is useful because it gives a local IP address to each one of your cards. This makes it easy to access via SSH (as we will need later).
 
@@ -98,7 +100,7 @@ In the file paste these four lines:
 ```
 interface eth0
 static ip_address= <STATIC IP ADDRESS>/24
-static routers= <GATEWAP IP ADRESS>
+static routers= <GATEWAY IP ADRESS>
 static domain_name_servers= <GATEWAP IP ADDRESS>
 ```
 Remember the gateway IP address that you wrote down earlier? Well, you will need it now. Replace <GATEWAY IP ADDRESS> with your gateway IP address after pasting the 4 lines shown above.
