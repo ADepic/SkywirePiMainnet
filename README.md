@@ -165,11 +165,7 @@ All the following commands listed below **will not work** unless you enter the a
 
 After that, simply copy and paste the following commands one by one and wait for each one to finish:
 
-```
-curl -L http://skyfleet.github.io/sky-update/KEY.asc | apt-key add -
-```
 
-NOTE: For the following commands, when a dialogue saying "Continue?" comes up, type `y` and press `enter` to confirm.
 ```
 apt install software-properties-common
 ```
@@ -179,6 +175,7 @@ add-apt-repository 'deb http://skyfleet.github.io/sky-update sid main'
 ```
 curl -L http://skyfleet.github.io/sky-update/KEY.asc | apt-key add -
 ```
+NOTE: For the following commands, if a dialogue saying "Continue?" comes up, type `y` and press `enter` to confirm.
 ```
 apt update
 ```
