@@ -19,7 +19,7 @@ If anything isn't clear please open an issue explaining the problem and I will t
 
 You can download skyimager [from here](https://github.com/SkycoinProject/skybian/releases). Click on "assets" and download the "skyimager.tar.xz" file for your operating system. The "darwin-amd64" file is the one for macOS. Extract it using your default archive extracting program for your distrubution. (Note: extracting will be more complicated for Windows, and you will have to use 7zip. However, how to do this is not covered here).
 
-Download raspbian [from here](https://downloads.raspberrypi.org/raspbian_lite_latest). Extract the zip file to find raspbian, which will be a ".img" file.
+Download raspbian [from here](https://downloads.raspberrypi.org/raspios_lite_armhf_latest). Extract the zip file to find raspbian, which will be a ".img" file.
 ## Setting up skywire images
 ![image showing skyimager interface](https://github.com/ADepic/SkywirePiMainnet/blob/master/images/skyimager.png)
 After having downloaded **skyimager**, open it up (by double clicking on the executable). Press next to reach the **Prepare boot parameters** screen (as shown above.)
@@ -161,17 +161,6 @@ sudo -i
 ```
 All the following commands listed below **will not work** unless you enter the above command.
 
-Next, enter this command to open a text editor:
-```
-nano /etc/apt/sources.list
-```
-And in the file, enter these two lines:
-```
-deb http://skyfleet.github.io/sky-update stretch main
-# deb-src http://skyfleet.github.io/sky-update stretch main
-```
-Press `ctrl-s` to save and then `ctrl-x` to exit the text editor.
-
 After that, simply copy and paste the following commands one by one and wait for each one to finish:
 
 ```
@@ -179,6 +168,15 @@ curl -L http://skyfleet.github.io/sky-update/KEY.asc | apt-key add -
 ```
 
 NOTE: For the following commands, when a dialogue saying "Continue?" comes up, type `y` and press `enter` to confirm.
+```
+apt install software-properties-common
+```
+```
+add-apt-repository 'deb http://skyfleet.github.io/sky-update sid main'
+```
+```
+curl -L http://skyfleet.github.io/sky-update/KEY.asc | apt-key add -
+```
 ```
 apt update
 ```
