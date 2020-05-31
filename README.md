@@ -223,6 +223,10 @@ hvisorkey=$(cat /etc/skywire-hypervisor.json | grep "public_key" | awk '{print s
 ### Running skywire
 Run skywire **on a hypervisor** like this:
 ```
+sudo mv /usr/bin/hypervisor /usr/bin/skywire-hypervisor
+```
+NOTE: If the above command gives an error, that's probably fine.
+```
 systemctl start skywire-hypervisor
 systemctl start skywire-visor
 ```
