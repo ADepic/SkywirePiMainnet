@@ -155,6 +155,8 @@ And select the `Change Password` option. Change the password to something differ
 
 ### Installing Skywire
 
+NOTE: The commands listed below are taken from the ['Sky update' repository](https://github.com/Skyfleet/sky-update/blob/master/README.md). These commands may change, so if anything isn't working you may wan't to check the instructions in that repository. However, the instructions are less clear and assume you have some knowledge of Terminal Commands already, so it may be more confusing. There are also *divergent points* which could add to the confusion.    
+
 After changing the password, enter this command:
 ```
 sudo -i
