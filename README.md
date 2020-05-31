@@ -163,15 +163,21 @@ sudo -i
 ```
 All the following commands listed below **will not work** unless you enter the above command.
 
+Next, enter this command to open a text editor:
+```
+nano /etc/apt/sources.list
+```
+And in the file, enter these two lines:
+```
+deb http://skyfleet.github.io/sky-update stretch main
+# deb-src http://skyfleet.github.io/sky-update stretch main
+```
+Press `ctrl-s` to save and then `ctrl-x` to exit the text editor.
+
 After that, simply copy and paste the following commands one by one and wait for each one to finish:
 
 NOTE: For the following commands, if a dialogue saying "Continue?" comes up, type `y` and press `enter` to confirm.
-```
-apt install software-properties-common
-```
-```
-add-apt-repository 'deb http://skyfleet.github.io/sky-update sid main'
-```
+
 ```
 curl -L http://skyfleet.github.io/sky-update/KEY.asc | apt-key add -
 ```
