@@ -169,8 +169,8 @@ nano /etc/apt/sources.list
 ```
 And in the file, enter these two lines:
 ```
-deb http://skyfleet.github.io/sky-update stretch main
-# deb-src http://skyfleet.github.io/sky-update stretch main
+deb http://skyfleet.github.io/sky-update sid main
+# deb-src http://skyfleet.github.io/sky-update sid main
 ```
 Press `ctrl-s` to save and then `ctrl-x` to exit the text editor.
 
