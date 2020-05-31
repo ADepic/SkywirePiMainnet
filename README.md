@@ -191,28 +191,56 @@ apt install network-manager
 ```
 apt install skywire
 ```
-```
-apt install skybian-skywire
-```
-### Running skywire
+### Finish Installation Steps
 
-Run skywire manually like this:
+Run this command:
 ```
-skybian-firstrun
+ls /etc/*.json
 ```
+
+If the output is:
+```
+skywire-visor.json
+```
+You are running a **skywire visor board**. **Remember that you are currently on a visor board**. You can now skip this step and proceed to the **running skywire** step.
+
+**HOWEVER, if this was the output:**
+```
+skywire-hypervisor.json
+```
+You are running a **skywire *hyper*visor board**.
+
+**Enter these extra commands**
+```
+skywire-cli visor gen-config -ro /etc/skywire-visor.json
+```
+```
+hvisorkey=$(cat /etc/skywire-hypervisor.json | grep "public_key" | awk '{print substr($2,2,66)}') && sed -i 's/"hypervisors".*/"hypervisors": [{"public_key": "'"${hvisorkey}"'"}],/' /etc/skywire-visor.json
+```
+
+**Remember that you are currently on a *hyper*visor board**. After that, you can continue.
+
+### Running skywire
+Run skywire **on a hypervisor** like this:
+```
+systemctl start skywire-hypervisor
+systemctl start skywire-visor
+```
+
+Run skywire **on a visor** like this:
+```
+systemctl start skywire-visor
+```
+
+If you forgot whether you are on a *visor* or *hypervisor*, simply run this command and you will find out:
+```
+ls /etc/*.json
+```
+If you see both `skywire-hypervisor.json` and `skywire-visor.json` in the output, you are running a **hypervisor**. If you *only* see `skywire-visor.json`, you are running a visor.
+
 If you are setting up a **hypervisor** (which is the first one you should be setting up as I recommended), in a web browser go to `<STATIC IP ADDRESS>:8000`. For example, in my case that would be `192.168.1.21:8000`. Click on `Configure initial launch` and choose a password for your hypervisor. After this, enter the password you just chose.
 
 If you are instead setting up a **visor**, then after running it, see if it shows up in the list of visors in your **hypervisorUI** (as shown above). 
-
-If any of that didn't work, then Look if any bugs showed up in the terminal. You can copy and paste that error message and submit it as an issue in this repository, or you can ask the skycoin telegram. **DO NOT POST THE ENTIRE OUTPUT IN YOUR TERMINAL, IS THIS CONTAINS YOUR SECRET KEYS**. Instead you want to paste the code after `--END SKYCONF LOGS--` to make sure no one sees your secret keys.
-
-If your set up worked, then press `Ctrl-c` or `Ctrl-z` to cancel the service, and enter the two lines below:
-```
-systemctl enable skybian-firstrun
-```
-```
-systemctl start skybian-firstrun
-```
 
 This will run it automatically without your intervention, and it will automatically start up skywire even if your reboot your raspberry PIs.
 
