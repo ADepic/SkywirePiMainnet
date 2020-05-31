@@ -3,7 +3,7 @@ This guide will show you how to get the **Skywire Mainnet** running on a set of 
 
 The main difference between using a GNU/linux or mac computer and a Windows one is that windows does not have SSH preinstalled, you will have to use PuTTY.
 
-If anything isn't clear please open an issue explaining the problem and I will try to make this documentation clearer.
+**If anything isn't clear please open an issue explaining the problem and I will try to make this documentation clearer.**
 
 # Requirements
 * A computer (this guide is aimed towards linux ones)
